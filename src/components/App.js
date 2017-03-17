@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-
-
+import Countries from './countries.js';
 
 class Search extends React.Component{
   constructor() {
@@ -8,35 +7,30 @@ class Search extends React.Component{
           this.state = {search: ''};
     }
     render() {
-        let countries = this.props.countries;
-        const search = this.state.search.trim();
-
-        if(search.length > 0){
-            countries = countries.filter(country => country.name.match( search ));
-        }
+        let Countries = this.props.Countries;
+        const search = this.state.search.toLowerCase();
+            Countries = Countries.filter(country => country.name.toLowerCase().match( search ));
+            const rendering =   Countries.map((country,i)=>{
+                return <li key={i}>{country.name} {/*   * search.length = {search.length}   *  country.name.length =  {country.name.length} */}</li>
+            })
         return <div>
-                    <input type="text" value={this.state.search} onChange={({target}) => this.setState({search: target.value})} placeholder="Type here" />
+                    <input type="text" value={this.state.search} onChange={({target}) => this.setState({search: target.value})} placeholder="Filter..." />
                     <ul>
-                        { countries.map((country,i)=>{
-                            return <li key={i}>{country.name}    * search.length = {search.length}   *  country.name.length =  {country.name.length}</li>
-                        })
-                      }
+                        {rendering}
                     </ul>
                 </div>;
     }
 };
 
-
-const  countries = [
-    { name: 'tesht1', code: 'esiminh1'},
-    { name: 'test2', code: 'ch2'},
-    { name: 'tst3', code: 'esim'}
-];
-
 const App = () => (
   <div className = 'container'>
-        <Search countries={ countries }/>
+        <Search Countries={ Countries }/>
   </div>
 );
 
 export default App;
+
+/*
+const user = {name: 'df', age: 25}
+const (name: new name = 'dddg')....
+*/
