@@ -1,6 +1,7 @@
+import 'react-hot-loader/patch';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.js'
+import App from './components/App'
 import {AppContainer} from 'react-hot-loader';
 
 require ('./index.html');
@@ -16,9 +17,10 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
+    const NextRootContainer = require('./components/App').default
     ReactDOM.render(
       <AppContainer>
-      <App/>
+        <NextRootContainer/>
       </AppContainer>,
       container
     );

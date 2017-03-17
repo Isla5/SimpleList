@@ -16,7 +16,7 @@ module.exports = {
                 loader: 'file-loader?name=[name].[ext]',
             },
             {
-                test: /\.jsx?/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
