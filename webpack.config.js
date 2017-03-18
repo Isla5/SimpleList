@@ -20,6 +20,10 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
+            {
+              test: /(\.css|\.sass|\.scss)$/,
+              loader: ['style', 'css?sourceMap', 'sass?sourceMap']
+            }
         ],
     },
     plugins: [

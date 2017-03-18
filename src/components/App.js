@@ -13,9 +13,9 @@ class Search extends React.Component{
             const rendering =   Countries.map((country,i)=>{
                 return <li key={i}>{country.name} {/*   * search.length = {search.length}   *  country.name.length =  {country.name.length} */}</li>
             })
-        return <div>
-                    <input type="text" value={this.state.search} onChange={({target}) => this.setState({search: target.value})} placeholder="Filter..." />
-                    <ul>
+        return <div className = 'searchform'>
+                    <input className='inpfield' type="text" value={this.state.search} onChange={({target}) => this.setState({search: target.value})} placeholder="  Filter..." />
+                    <ul className = 'listc'>
                         {rendering}
                     </ul>
                 </div>;
@@ -23,9 +23,7 @@ class Search extends React.Component{
 };
 
 const App = () => (
-  <div className = 'container'>
         <Search Countries={ Countries }/>
-  </div>
 );
 
 export default App;
