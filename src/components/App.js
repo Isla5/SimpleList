@@ -1,34 +1,47 @@
 import React, {Component} from 'react';
-import Countries from './countries.js';
 
-class Search extends React.Component {
-    constructor() {
-        super();
+class App extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            search: ''
-        };
+            tdl: [],
+            usrInp: '',
+        }
+        this.inpChange=this.inpChange.bind(this)
     }
+
+    inpChange(e, num){
+        const tdl = this.state.tdl;
+        tdl[num] = e.target.value
+        if (this.state.usrInp.length === 0) {
+            const tdl = this.state.tdl.concat(App);
+            this.setState({usrInp: e.target.value, tdl});
+        } else if (tdl[num] === '') {
+            const tdl = this.state.tdl.splice(App);
+            this.setState({usrInp: e.target.value});
+        } else {
+            this.setState({usrInp: e.target.value});
+        }
+    }
+
     render() {
-        let Countries = this.props.Countries;
-        const search = this.state.search.toLowerCase();
-        Countries = Countries.filter(country => country.name.toLowerCase().match(search));
-        const rendering = Countries.map((country, i) => {
-            return <li key={i}>{country.name}</li>
-        })
-        return <div>
-            <input className='inpfield' type="text" value={this.state.search} onChange={({target}) => this.setState({search: target.value})} placeholder="Filter..."/>
-            <ul className='listc'>
-                {rendering}
-            </ul>
-        </div>;
+        const tdl = this.state.tdl.map((Tdl,i) => {
+            return <li key={i}> <Tdl/></li>
+        });
+        return <div className='background1'>
+            <input type="text" onChange={this.inpChange}/>
+            <ol>
+                {tdl}
+            </ol>
+        </div>
     }
-};
+}
 
-const App = () => (<Search Countries={Countries}/>);
-
+class Sth extends Component {
+  render(){
+    return(
+      <div></div>
+    )
+  }
+}
 export default App;
-
-/*
-const user = {name: 'df', age: 25}
-const (name: new name = 'dddg')....
-*/
